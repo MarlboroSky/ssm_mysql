@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.giit.www.system.dao.SkyDao">
+
+    <resultMap id="game_map" type="Sky">
+        <id property="game_id" column="game_id"/>
+        <result property="lol" column="lol"/>
+        <result property="crossfire" column="crossfire"/>
+        <result property="dnf" column="dnf"/>
+        <result property="dota" column="dota"/>
+    </resultMap>
+      <!--  查询全部表数据  -->
+    <select id="getGameList" resultMap="game_map">
+        SELECT * FROM GAME_BASE
+    </select>
+
+    <insert id="add" parameterType="Sky">
+        INSERT INTO GAME_BASE(game_id,lol,crossfire,dnf,dota) VALUES(#{game_id},#{lol},#{crossfire},#{dnf},#{dota})
+    </insert>
+    
+    <delete id="delete" parameterType="String">
+        delete FROM game_base  where game_id = #{game_id}
+    </delete>
+
+</mapper>
